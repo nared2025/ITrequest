@@ -1,0 +1,165 @@
+/* ===================================================
+   1. ปรับหน่วยเป็น rem เพื่อให้ยืดหยุ่นตาม root font-size
+   =================================================== */
+.create {
+  font: 700 1.125rem consolas;      /* 18px ≈ 1.125rem */
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 1.25rem 1.25rem;          /* 20px ≈ 1.25rem */
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.625rem;           /* 10px ≈ 0.625rem */
+  transition: 0.2s ease-in-out;
+  transform: scale(1);
+  display: inline-block;
+}
+
+.create span {
+  position: relative;
+  z-index: 0;
+  color: #fff;
+}
+
+.liquid {
+  position: absolute;
+  top: -4.375rem;                    /* -70px ≈ -4.375rem */
+  left: 0;
+  width: 100%;
+  height: 12.5rem;                   /* 200px ≈ 12.5rem */
+  background: rgb(114, 255, 152);
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.7);
+  z-index: -1;
+  transition: top 0.6s ease-in-out;
+}
+
+.liquid::after,
+.liquid::before {
+  position: absolute;
+  content: "";
+  width: 200%;
+  height: 200%;
+  top: 0;
+  left: 0;
+  transform: translate(-25%, -75%);
+}
+
+.liquid::after {
+  border-radius: 45%;
+  background: rgba(20, 20, 20, 1);
+  box-shadow: 0 0 10px 5px rgb(43, 148, 12),
+              inset 0 0 5px rgb(25, 129, 34);
+  animation: animate 5s linear infinite;
+  opacity: 0.8;
+}
+
+.liquid::before {
+  border-radius: 40%;
+  box-shadow: 0 0 10px rgba(26, 26, 26, 0.5),
+              inset 0 0 5px rgba(26, 26, 26, 0.5);
+  background: rgba(26, 26, 26, 0.5);
+  animation: animate 7s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: translate(-25%, -75%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-25%, -75%) rotate(360deg);
+  }
+}
+
+.create:hover .liquid {
+  top: -6.25rem;                     /* -100px ≈ -6.25rem */
+}
+
+.create:hover {
+  box-shadow: 0 0 5px rgb(53, 194, 98),
+              inset 0 0 5px #7293ff;
+  transition-delay: 0.2s;
+}
+
+/* ===================================================
+   2. Media Queries สำหรับ Responsive
+   =================================================== */
+
+/* ====== มือถือจอเล็ก (≤ 480px) ====== */
+@media only screen and (max-width: 480px) {
+  .create {
+    font-size: 1rem;                  /* 16px */
+    padding: 0.875rem 0.875rem;       /* 14px */
+    border-radius: 0.5rem;            /* 8px */
+  }
+  .liquid {
+    top: -3.125rem;                   /* -50px */
+    height: 10rem;                    /* 160px */
+  }
+  .create:hover .liquid {
+    top: -5rem;                       /* -80px */
+  }
+}
+
+/* ====== แท็บเล็ตจอกลาง (481px – 768px) ====== */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  .create {
+    font-size: 1.0625rem;             /* 17px */
+    padding: 1rem 1rem;               /* 16px */
+    border-radius: 0.5625rem;         /* 9px */
+  }
+  .liquid {
+    top: -3.75rem;                    /* -60px */
+    height: 11rem;                    /* 176px */
+  }
+  .create:hover .liquid {
+    top: -5.625rem;                   /* -90px */
+  }
+}
+
+/* ====== เดสก์ท็อปจอเล็ก (769px – 1024px) ====== */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .create {
+    font-size: 1.125rem;              /* 18px */
+    padding: 1.125rem 1.125rem;       /* 18px */
+    border-radius: 0.625rem;          /* 10px */
+  }
+  .liquid {
+    top: -4.375rem;                   /* -70px */
+    height: 12rem;                    /* 192px */
+  }
+  .create:hover .liquid {
+    top: -6rem;                       /* -96px */
+  }
+}
+
+/* ====== เดสก์ท็อปจอใหญ่ (≥ 1025px) ====== */
+@media only screen and (min-width: 1025px) {
+  .create {
+    font-size: 1.25rem;               /* 20px */
+    padding: 1.5rem 1.5rem;           /* 24px */
+    border-radius: 0.75rem;           /* 12px */
+  }
+  .liquid {
+    top: -5rem;                       /* -80px */
+    height: 13rem;                    /* 208px */
+  }
+  .create:hover .liquid {
+    top: -6.5rem;                     /* -104px */
+  }
+}
+
+/* ===================================================
+   3. (ถ้าจำเป็น) รองรับจอ Hi-DPI ด้วยภาพ 2×
+   =================================================== */
+/*
+.hero-section {
+  background-image: url('../image/banner_06.png');
+}
+@media 
+  (-webkit-min-device-pixel-ratio: 2), 
+  (min-resolution: 192dpi) {
+  .hero-section {
+    background-image: url('../image/banner_06@2x.png');
+  }
+}
+*/
